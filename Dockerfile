@@ -1,6 +1,6 @@
 FROM docker:19.03
 
-apk add bash
+RUN apk add bash
 
 COPY entrypoint.sh /entrypoint.sh
 
