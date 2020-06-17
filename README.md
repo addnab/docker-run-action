@@ -25,9 +25,6 @@ Docker already supports running commands inside a docker image. See [jobs.<jobs_
   command:
     description: 'Command'
     required: false
-  args:
-    description: 'Args'
-    required: false
   registry:
     description: 'Registry'
     required: false

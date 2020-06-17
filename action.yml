@@ -11,9 +11,6 @@ inputs:
   command:
     description: 'Command'
     required: false
-  args:
-    description: 'Args'
-    required: false
   registry:
     description: 'Registry'
     required: false
