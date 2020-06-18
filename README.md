@@ -1,8 +1,11 @@
 # Docker Run Action
 
-This action targets a very specific use-case that is not currently supported by Github Workflows. This action gives you the capability to run built containers.
+Github Workflows already supports running on public docker images out-of-the-box (See [jobs.<jobs_id>.container](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idcontainer)).
 
-Docker already supports running commands inside a docker image. See [jobs.<jobs_id>.container](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idcontainer). But it doesn't give you a clean way to run an image from a private repo or an image built by a previous step.
+### Why use docker-run-action?
+- run on a privately-owned image.
+- run on an image built by a previous step.
+- run a specific step in docker instead of running it as a job.
 
 ### Example Usage
 
@@ -24,7 +27,18 @@ Docker already supports running commands inside a docker image. See [jobs.<jobs_
       echo "second line"
 ```
 
-#### Run on previously built container. 
+#### run on a privately-owned image
+```yaml
+- uses: addnab/docker-run-action@v1
+  with:
+    username: ${{ secrets.DOCKER_USERNAME }}
+    password: ${{ secrets.DOCKER_PASSWORD }}
+    registry: gcr.io
+    image: test-image:latest
+    run: echo "hello world"
+```
+
+#### run on an image built by a previous step
 ```yaml
 - uses: docker/build-push-action@v1
   with:
@@ -38,7 +52,7 @@ Docker already supports running commands inside a docker image. See [jobs.<jobs_
 
 
 #### use a specific shell (default: sh). 
-*Note: The shell must be installe in the container*
+*Note: The shell must be installed in the container*
 ```yaml
 - uses: addnab/docker-run-action@v1
   with:
