@@ -8,8 +8,8 @@ inputs:
   options:
     description: 'Options'
     required: false
-  command:
-    description: 'Command'
+  run:
+    description: 'Run command in container'
     required: false
   registry:
     description: 'Registry'

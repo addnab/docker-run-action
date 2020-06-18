@@ -11,7 +11,17 @@ Docker already supports running commands inside a docker image. See [jobs.<jobs_
 - uses: addnab/docker-run-action@v1
   with:
     image: docker:latest
-    command: echo "hello world"
+    run: echo "hello world"
+```
+
+#### Multiple commands
+```yaml
+- uses: addnab/docker-run-action@v1
+  with:
+    image: docker:latest
+    run: |
+      echo "first line"
+      echo "second line"
 ```
 
 ### Supported Inputs
