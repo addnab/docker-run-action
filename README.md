@@ -23,25 +23,3 @@ Docker already supports running commands inside a docker image. See [jobs.<jobs_
       echo "first line"
       echo "second line"
 ```
-
-### Supported Inputs
-```yaml
-  image:
-    description: 'Image'
-    required: true
-  options:
-    description: 'Options'
-    required: false
-  command:
-    description: 'Command'
-    required: false
-  registry:
-    description: 'Registry'
-    required: false
-  username:
-    description: 'Username'
-    required: false
-  password:
-    description: 'Password'
-    required: false
-```
