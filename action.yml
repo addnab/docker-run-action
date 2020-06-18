@@ -11,6 +11,10 @@ inputs:
   run:
     description: 'Run command in container'
     required: false
+  shell:
+    description: 'Use a specific shell'
+    required: false
+    default: sh
   registry:
     description: 'Registry'
     required: false

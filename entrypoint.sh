@@ -6,4 +6,4 @@ fi
 
 echo "$INPUT_RUN" | sed -e 's/\\n/;/g' > semicolon_delimited_script
 
-exec docker run $INPUT_OPTIONS $INPUT_IMAGE /bin/sh -c "`cat semicolon_delimited_script`"
+exec docker run $INPUT_OPTIONS $INPUT_IMAGE /bin/$INPUT_SHELL -c "`cat semicolon_delimited_script`"
