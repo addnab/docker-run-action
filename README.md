@@ -5,7 +5,7 @@ Github Workflows already supports running on public docker images out-of-the-box
 ### Why use docker-run-action?
 - run on a privately-owned image.
 - run on an image built by a previous step.
-- run a specific step in docker instead of running it as a job.
+- run a specific step in docker
 
 ### Example Usage
 
