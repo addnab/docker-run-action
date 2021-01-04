@@ -63,7 +63,7 @@ Github Workflows already supports running on public docker images out-of-the-box
       echo "second line"
 ```
 
-### use docker options
+#### use docker options
 ```yaml
 - uses: addnab/docker-run-action@v1
   with:
