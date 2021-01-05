@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-if [ ! -z $INPUT_USERNAME ];
+if [ ! -z "$INPUT_USERNAME" ];
 then echo $INPUT_PASSWORD | docker login $INPUT_REGISTRY -u $INPUT_USERNAME --password-stdin
 fi
 
-if [ ! -z $INPUT_SHELL ]; then
+if [ ! -z "$INPUT_SHELL" ]; then
 	INPUT_OPTIONS="$INPUT_OPTIONS --entrypoint=$INPUT_SHELL"
 fi
 
-if [ ! -z $INPUT_ENV ]; then
+if [ ! -z "$INPUT_ENV" ]; then
 	echo "$INPUT_ENV" > env-file
 	INPUT_OPTIONS="$INPUT_OPTIONS --env-file env-file"
 fi
