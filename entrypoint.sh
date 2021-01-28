@@ -9,4 +9,4 @@ docker network ls
 
 echo "$INPUT_RUN" | sed -e 's/\\n/;/g' > semicolon_delimited_script
 
-exec docker run -v "/var/run/docker.sock":"/var/run/docker.sock" $INPUT_OPTIONS --entrypoint=$INPUT_SHELL $INPUT_IMAGE -c "`cat semicolon_delimited_script`"
+exec docker run -v "/var/run/docker.sock":"/var/run/docker.sock" --network=$INPUT_DOCKER_NETWORK $INPUT_OPTIONS --entrypoint=$INPUT_SHELL $INPUT_IMAGE -c "`cat semicolon_delimited_script`"
