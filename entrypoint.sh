@@ -5,6 +5,7 @@ then echo $INPUT_PASSWORD | docker login $INPUT_REGISTRY -u $INPUT_USERNAME --pa
 fi
 
 env
+docker network ls
 
 echo "$INPUT_RUN" | sed -e 's/\\n/;/g' > semicolon_delimited_script
 
