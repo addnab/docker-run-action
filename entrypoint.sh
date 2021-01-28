@@ -4,8 +4,6 @@ if [ ! -z $INPUT_USERNAME ];
 then echo $INPUT_PASSWORD | docker login $INPUT_REGISTRY -u $INPUT_USERNAME --password-stdin
 fi
 
-env
-docker network ls
 
 echo "$INPUT_RUN" | sed -e 's/\\n/;/g' > semicolon_delimited_script
 
