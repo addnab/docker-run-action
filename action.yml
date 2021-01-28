@@ -24,10 +24,8 @@ inputs:
   password:
     description: 'Password'
     required: false
-  docker_network:
-    description: 'Docker Network ID'
-    default: ${{ job.container.network }}
-    retuired: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    JOB_CONTAINER_NETWORK_ID: ${{ job.container.network }}
