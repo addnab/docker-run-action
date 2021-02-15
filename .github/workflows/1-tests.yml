@@ -21,6 +21,25 @@ jobs:
         with:
           script: |
             const dockerVersion = '${{ steps.run-docker.outputs.docker-version }}';
-            if (dockerVersion !== '20.10.4') {
+            if (dockerVersion !== '20.10.3') {
               core.setFailed(`Smoke Test Failed`);
+            }
+  volume-mount-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo "some text" > someFile
+      - uses: ./
+        id: run-docker
+        with:
+          image: docker
+          options: -v ${{ github.workspace }}:/work
+          run: |
+            echo "::set-output name=file-contents::`cat /work/someFile`"
+      - uses: actions/github-script@v3
+        with:
+          script: |
+            const fileContents = '${{ steps.run-docker.outputs.file-contents }}';
+            if (fileContents !== 'some text') {
+              core.setFailed(`Unable to mount workspace volume`);
             }
