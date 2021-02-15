@@ -1,33 +1,25 @@
 # Docker Run Action
 
-Github Workflows already supports running on public docker images out-of-the-box (See [jobs.<jobs_id>.container](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idcontainer)).
+- run a privately-owned image.
+- run an image built by a previous step.
+- run a specific step in docker.
+- See https://github.com/addnab/docker-run-action/blob/main/action.yml for all the available inputs.
 
-### Then why use docker-run-action?
-- run on a privately-owned image.
-- run on an image built by a previous step.
-- run a specific step in docker
+#### Typical Use Case
 
-### Example Usage
-
-#### single-line command
 ```yaml
 - uses: addnab/docker-run-action@v1
   with:
-    image: docker:latest
-    run: echo "hello world"
-```
-
-#### multi-line commands
-```yaml
-- uses: addnab/docker-run-action@v1
-  with:
-    image: docker:latest
+    username: ${{ secrets.DOCKER_USERNAME }}
+    password: ${{ secrets.DOCKER_PASSWORD }}
+    registry: gcr.io
+    image: private-image:latest
+    options: -v $GITHUB_WORKSPACE:/work -e ABC=123
     run: |
-      echo "first line"
-      echo "second line"
+      ./run-script
 ```
 
-#### run on a privately-owned image
+#### run a privately-owned image
 ```yaml
 - uses: addnab/docker-run-action@v1
   with:
@@ -38,7 +30,7 @@ Github Workflows already supports running on public docker images out-of-the-box
     run: echo "hello world"
 ```
 
-#### run on an image built by a previous step
+#### run an image built by a previous step
 ```yaml
 - uses: docker/build-push-action@v1
   with:
@@ -61,14 +53,4 @@ Github Workflows already supports running on public docker images out-of-the-box
     run: |
       echo "first line"
       echo "second line"
-```
-
-#### use docker options
-```yaml
-- uses: addnab/docker-run-action@v1
-  with:
-    image: docker:latest
-    options: -v $GITHUB_WORKSPACE:/work -e ABC=123
-    run: |
-      echo "first line"
 ```
