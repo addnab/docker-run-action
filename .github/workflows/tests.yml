@@ -1,0 +1,72 @@
+name: Docker Run Action Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run docker action and set output for testing
+        uses: ./
+        id: run-docker
+        with:
+          image: docker:20.10.3
+          run: |
+            echo "::set-output name=docker-version::`echo $DOCKER_VERSION`"
+      - name: Test the output
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const dockerVersion = '${{ steps.run-docker.outputs.docker-version }}';
+            if (dockerVersion !== '20.10.3') {
+              core.setFailed(`Smoke Test Failed`);
+            }
+  volume-mount-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create File to be mounted
+        run: echo "some text" > someFile
+      - name: Run docker action with mounted workspace
+        uses: ./
+        id: run-docker
+        with:
+          image: docker
+          options: -v ${{ github.workspace }}:/work
+          run: |
+            echo "::set-output name=file-contents::`cat /work/someFile`"
+      - name: Check if file contents match
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const fileContents = '${{ steps.run-docker.outputs.file-contents }}';
+            if (fileContents !== 'some text') {
+              core.setFailed(`Unable to mount workspace volume`);
+            }
+  container-network-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: test
+          POSTGRES_USER: test
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run docker action and test network connection
+        uses: ./
+        with:
+          image: postgres
+          run: >
+            pg_isready -d test -U test -h postgres -p ${{ job.services.postgres.ports[5432] }}
+          options: >
+            -e PGPASSWORD=test
