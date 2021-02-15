@@ -14,7 +14,7 @@
     password: ${{ secrets.DOCKER_PASSWORD }}
     registry: gcr.io
     image: private-image:latest
-    options: -v $GITHUB_WORKSPACE:/work -e ABC=123
+    options: -v ${{ github.workspace }}:/work -e ABC=123
     run: |
       echo "Running Script"
       /work/run-script
