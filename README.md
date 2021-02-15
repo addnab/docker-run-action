@@ -16,7 +16,8 @@
     image: private-image:latest
     options: -v $GITHUB_WORKSPACE:/work -e ABC=123
     run: |
-      ./run-script
+      echo "Running Script"
+      /work/run-script
 ```
 
 #### run a privately-owned image
