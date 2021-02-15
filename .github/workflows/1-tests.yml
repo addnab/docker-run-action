@@ -12,11 +12,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./
+        id: run-docker
         with:
           image: docker:20.10.3
           run: |
-            echo "::set-output name=image_name::`uname -r`"
+            echo "::set-output name=docker-version::`echo $DOCKER_VERSION`"
       - uses: actions/github-script@v3
         with:
           script: |
-            console.log(core.getOutput('image_name'))
+            const dockerVersion = '${{ steps.run-docker.outputs.docker-version }}';
+            if (dockerVersion !== '20.10.4') {
+              core.setFailed(`Smoke Test Failed`);
+            }
