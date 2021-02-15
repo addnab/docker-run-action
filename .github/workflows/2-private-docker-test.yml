@@ -1,0 +1,9 @@
+name: Private Docker Run Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-private-docker:
