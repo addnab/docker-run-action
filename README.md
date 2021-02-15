@@ -7,7 +7,7 @@
 #### Typical Use Case
 
 ```yaml
-- uses: addnab/docker-run-action@v1
+- uses: addnab/docker-run-action@v2
   with:
     username: ${{ secrets.DOCKER_USERNAME }}
     password: ${{ secrets.DOCKER_PASSWORD }}
@@ -21,7 +21,7 @@
 
 #### run a privately-owned image
 ```yaml
-- uses: addnab/docker-run-action@v1
+- uses: addnab/docker-run-action@v2
   with:
     username: ${{ secrets.DOCKER_USERNAME }}
     password: ${{ secrets.DOCKER_PASSWORD }}
@@ -36,7 +36,7 @@
   with:
     repository: test-image
     push: false
-- uses: addnab/docker-run-action@v1
+- uses: addnab/docker-run-action@v2
   with:
     image: test-image:latest
     run: echo "hello world"
@@ -46,7 +46,7 @@
 #### use a specific shell (default: sh). 
 *Note: The shell must be installed in the container*
 ```yaml
-- uses: addnab/docker-run-action@v1
+- uses: addnab/docker-run-action@v2
   with:
     image: docker:latest
     shell: bash
