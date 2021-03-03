@@ -27,7 +27,7 @@ inputs:
   docker_network:
     description: 'Docker Network ID'
     default: ${{ job.container.network }}
-    retuired: false
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
