@@ -4,10 +4,12 @@
 - run an image built by a previous step.
 - See https://github.com/addnab/docker-run-action/blob/main/action.yml for all the available inputs.
 
+## Examples
+
 #### Typical Use Case
 
 ```yaml
-- uses: addnab/docker-run-action@v2
+- uses: addnab/docker-run-action@v3
   with:
     username: ${{ secrets.DOCKER_USERNAME }}
     password: ${{ secrets.DOCKER_PASSWORD }}
@@ -21,7 +23,7 @@
 
 #### run a privately-owned image
 ```yaml
-- uses: addnab/docker-run-action@v2
+- uses: addnab/docker-run-action@v3
   with:
     username: ${{ secrets.DOCKER_USERNAME }}
     password: ${{ secrets.DOCKER_PASSWORD }}
@@ -36,7 +38,7 @@
   with:
     repository: test-image
     push: false
-- uses: addnab/docker-run-action@v2
+- uses: addnab/docker-run-action@v3
   with:
     image: test-image:latest
     run: echo "hello world"
@@ -46,7 +48,7 @@
 #### use a specific shell (default: sh). 
 *Note: The shell must be installed in the container*
 ```yaml
-- uses: addnab/docker-run-action@v2
+- uses: addnab/docker-run-action@v3
   with:
     image: docker:latest
     shell: bash
