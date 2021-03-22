@@ -34,9 +34,9 @@
 
 #### run an image built by a previous step
 ```yaml
-- uses: docker/build-push-action@v1
+- uses: docker/build-push-action@v2
   with:
-    repository: test-image
+    tags: test-image:latest
     push: false
 - uses: addnab/docker-run-action@v3
   with:
