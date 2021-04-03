@@ -16,7 +16,7 @@ inputs:
     required: false
     default: sh
   precommand_prefix: 
-    description: 'flag needed before \'run\' command'
+    description: 'flag needed before ''run'' command'
     required: false
     default: -c
   registry:
