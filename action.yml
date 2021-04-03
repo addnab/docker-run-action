@@ -15,6 +15,10 @@ inputs:
     description: 'Use a specific shell'
     required: false
     default: sh
+  precommand_prefix: 
+    description: 'flag needed before \'run\' command'
+    required: false
+    default: -c
   registry:
     description: 'Registry'
     required: false

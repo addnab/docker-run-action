@@ -14,4 +14,7 @@ if [ ! -z $INPUT_SHELL ];
 then INPUT_OPTIONS="$INPUT_OPTIONS --entrypoint=$INPUT_SHELL"
 fi
 
-exec docker run -v "/var/run/docker.sock":"/var/run/docker.sock" $INPUT_OPTIONS $INPUT_IMAGE -c "`cat semicolon_delimited_script`"
+if [ ! -z $INPUT_SHELL ];
+then INPUT_OPTIONS="$INPUT_OPTIONS --entrypoint=$INPUT_SHELL"
+fi
+exec docker run -v "/var/run/docker.sock":"/var/run/docker.sock" $INPUT_OPTIONS $INPUT_IMAGE $INPUT_PRECOMMAND_PREFIX "`cat semicolon_delimited_script`"
