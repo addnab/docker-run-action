@@ -9,6 +9,8 @@
 #### Typical Use Case
 
 ```yaml
+- name: Checkout 
+  uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume 
 - uses: addnab/docker-run-action@v3
   with:
     username: ${{ secrets.DOCKER_USERNAME }}
