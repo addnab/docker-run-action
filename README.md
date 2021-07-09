@@ -12,12 +12,14 @@
 - name: Checkout 
   uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume 
 - uses: addnab/docker-run-action@v3
+  env:
+    ABC: 123
   with:
     username: ${{ secrets.DOCKER_USERNAME }}
     password: ${{ secrets.DOCKER_PASSWORD }}
     registry: gcr.io
     image: private-image:latest
-    options: -v ${{ github.workspace }}:/work -e ABC=123
+    options: -v ${{ github.workspace }}:/work
     run: |
       echo "Running Script"
       /work/run-script
