@@ -5,6 +5,9 @@ inputs:
   image:
     description: 'Image'
     required: true
+  volumes:
+    description: "Volume mounts"
+    required: false
   options:
     description: 'Options'
     required: false
