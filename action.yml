@@ -11,7 +11,7 @@ inputs:
   workdir:
     description: 'Workdir for the container'
     required: false
-    default: ${{ github.workspace }}
+    default: /github/workspace/${{ github.event.repository.name }}
   run:
     description: 'Run command in container'
     required: false
