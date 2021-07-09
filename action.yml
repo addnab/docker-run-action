@@ -8,6 +8,10 @@ inputs:
   options:
     description: 'Options'
     required: false
+  workidr:
+    description: 'Workdir for the container'
+    required: false
+    default: ${{ github.workspace }}
   run:
     description: 'Run command in container'
     required: false
