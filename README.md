@@ -8,6 +8,8 @@
 
 #### Typical Use Case
 
+Here we mount a volume under `/work` and specify an environment variable. This is the equivalent of `docker run --rm -v ${{ github.workspace }}:/work -e ABC=123 private-image:latest sh -c 'echo "Running script"; /work/run-script'.
+
 ```yaml
 - name: Checkout 
   uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume 
