@@ -15,6 +15,14 @@ inputs:
     description: 'Use a specific shell'
     required: false
     default: sh
+  script_prefix: 
+    description: 'A prefix telling the shell to execute the following (single) string as a script'
+    required: false
+    default: -c
+  quote_argument:
+    description: 'Whether to quote the arguments when providing them to the docker as input'
+    required: false
+    default: true
   registry:
     description: 'Registry'
     required: false
