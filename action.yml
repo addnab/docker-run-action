@@ -28,6 +28,9 @@ inputs:
     description: 'Docker Network ID'
     default: ${{ job.container.network }}
     required: false
+outputs:
+  container_output:
+    description: 'The output from the container execution'
 runs:
   using: 'docker'
   image: 'Dockerfile'
