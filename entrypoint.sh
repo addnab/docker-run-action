@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-env | grep -v '^#' | xargs > docker-run-action.env
+env | egrep -v  "^(#|;| |INPUT_*|PATH|HOME)" | awk '$1 ~ /^\w+=/' | xargs -0 > docker-run-action.env
 
 if [ ! -z $INPUT_USERNAME ];
 then echo $INPUT_PASSWORD | docker login $INPUT_REGISTRY -u $INPUT_USERNAME --password-stdin
