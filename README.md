@@ -15,7 +15,7 @@
   with:
     username: ${{ secrets.DOCKER_USERNAME }}
     password: ${{ secrets.DOCKER_PASSWORD }}
-    registry: gcr.io
+    registry: ghcr.io
     image: private-image:latest
     options: -v ${{ github.workspace }}:/work -e ABC=123
     run: |
