@@ -29,5 +29,5 @@ inputs:
     default: ${{ job.container.network }}
     required: false
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'node16'
+  main: 'action.js'
