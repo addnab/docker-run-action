@@ -10,7 +10,7 @@
 
 ```yaml
 - name: Checkout 
-  uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume 
+  uses: actions/checkout@v4 # Required to mount the Github Workspace to a volume 
 - uses: addnab/docker-run-action@v3
   with:
     username: ${{ secrets.DOCKER_USERNAME }}
