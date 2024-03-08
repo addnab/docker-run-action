@@ -8,4 +8,10 @@ if [ ! -z $INPUT_DOCKER_NETWORK ];
 then INPUT_OPTIONS="$INPUT_OPTIONS --network $INPUT_DOCKER_NETWORK"
 fi
 
-exec docker run -v "/var/run/docker.sock":"/var/run/docker.sock" $INPUT_OPTIONS --entrypoint=$INPUT_SHELL $INPUT_IMAGE -c "${INPUT_RUN//$'\n'/;}"
+# NOTE: Docker sock may not always be under /var/run/docker.sock
+# Rely on DOCKER_HOST if it exists.
+# Ref: https://docs.docker.com/engine/reference/commandline/cli/
+DOCKER_HOST="${DOCKER_HOST:-unix:///var/run/docker.sock}"
+DOCKER_HOST="${DOCKER_HOST#unix://}"
+
+exec docker run -v "${DOCKER_HOST}":"${DOCKER_HOST}" $INPUT_OPTIONS --entrypoint=$INPUT_SHELL $INPUT_IMAGE -c "${INPUT_RUN//$'\n'/;}"
